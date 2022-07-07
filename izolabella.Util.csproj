@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<Version>1.0.0</Version>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Company>izolabella</Company>
+	<Description>A general-use utilization package.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="izolabella.Storage" Version="0.2.1" />
+  </ItemGroup>
+
+</Project>
