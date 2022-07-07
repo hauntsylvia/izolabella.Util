@@ -8,6 +8,15 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Company>izolabella</Company>
 	<Description>A general-use utilization package.</Description>
+	<RepositoryUrl>https://github.com/izolabella/izolabella.Util</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
