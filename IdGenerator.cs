@@ -1,4 +1,6 @@
-﻿namespace izolabella.Util
+﻿using System.Diagnostics;
+
+namespace izolabella.Util
 {
     public class IdGenerator
     {

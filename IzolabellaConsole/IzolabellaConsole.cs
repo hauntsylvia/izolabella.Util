@@ -16,7 +16,7 @@ namespace izolabella.Util.IzolabellaConsole
         /// <returns></returns>
         public static bool CheckY(string Context, string MessageBefore)
         {
-            Console.WriteLine($"[{Context}]: {MessageBefore} - Press Y to accept, anything else to decline.");
+            Write(Context, $"{MessageBefore} - Press Y to accept, anything else to decline.");
             return Console.ReadKey(true).Key == ConsoleKey.Y;
         }
 
