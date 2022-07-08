@@ -1,14 +1,15 @@
-﻿using izolabella.Storage.Objects.Structures;
+﻿using izolabella.Storage.Objects.DataStores;
+using izolabella.Storage.Objects.Structures;
 using izolabella.Util;
 
 namespace izolabella.Util.Controllers.Profiles
 {
     public class ControllerProfile : IDataStoreEntity
     {
-        public ControllerProfile(string Alias, string DiscordBotToken, bool ControllerEnabled, ulong? Id = null)
+        public ControllerProfile(string Alias, string Token, bool ControllerEnabled, ulong? Id = null)
         {
             this.Alias = Alias;
-            this.DiscordBotToken = DiscordBotToken;
+            this.Token = Token;
             this.ControllerEnabled = ControllerEnabled;
             this.Id = Id ?? IdGenerator.CreateNewId();
         }
@@ -18,13 +19,19 @@ namespace izolabella.Util.Controllers.Profiles
         /// </summary>
         public string Alias { get; }
 
-        public string DiscordBotToken { get; }
+        /// <summary>
+        /// The secret token of this profile.
+        /// </summary>
+        public string Token { get; }
 
         /// <summary>
         /// Whether the profile should be enabled.
         /// </summary>
         public bool ControllerEnabled { get; set; }
 
+        /// <summary>
+        /// The unique <see cref="IDataStoreEntity"/> identifier for <see cref="DataStore"/>s.
+        /// </summary>
         public ulong Id { get; }
     }
 }

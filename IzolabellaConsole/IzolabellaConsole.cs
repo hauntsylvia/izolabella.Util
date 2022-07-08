@@ -8,18 +8,31 @@ namespace izolabella.Util.IzolabellaConsole
 {
     public class IzolabellaConsole
     {
+        /// <summary>
+        /// Awaits for the user to input the letter Y, and returns false for anything else.
+        /// </summary>
+        /// <param name="Context"></param>
+        /// <param name="MessageBefore"></param>
+        /// <returns></returns>
         public static bool CheckY(string Context, string MessageBefore)
         {
-            System.Console.WriteLine($"[{Context}]: {MessageBefore} - Press Y to accept, anything else to decline.");
-            return System.Console.ReadKey(true).Key == ConsoleKey.Y;
+            Console.WriteLine($"[{Context}]: {MessageBefore} - Press Y to accept, anything else to decline.");
+            return Console.ReadKey(true).Key == ConsoleKey.Y;
         }
 
+        /// <summary>
+        /// Awaits for the end user to input a message.
+        /// </summary>
+        /// <param name="Context"></param>
+        /// <param name="MessageBefore"></param>
+        /// <param name="Result"></param>
+        /// <returns></returns>
         public static bool GetNext(string Context, string MessageBefore, out string? Result)
         {
             Write(Context, MessageBefore);
             try
             {
-                Result = System.Console.ReadLine();
+                Result = Console.ReadLine();
                 return true;
             }
             catch (IOException E)
@@ -29,14 +42,22 @@ namespace izolabella.Util.IzolabellaConsole
             }
         }
 
+        /// <summary>
+        /// Awaits for the end user to input a message, but never actually displays that message to the console.
+        /// Useful for passwords, tokens, etc.
+        /// </summary>
+        /// <param name="Context"></param>
+        /// <param name="MessageBefore"></param>
+        /// <param name="Result"></param>
+        /// <returns></returns>
         public static bool GetProtectedNext(string Context, string MessageBefore, out string Result)
         {
-            System.Console.WriteLine($"[{Context}]: {MessageBefore}");
+            Write(Context, MessageBefore);
             bool R = true;
             Result = string.Empty;
             while (R)
             {
-                ConsoleKeyInfo Key = System.Console.ReadKey(true);
+                ConsoleKeyInfo Key = Console.ReadKey(true);
                 if (Key.Key == ConsoleKey.Enter)
                 {
                     break;
@@ -49,9 +70,14 @@ namespace izolabella.Util.IzolabellaConsole
             return true;
         }
 
+        /// <summary>
+        /// Writes a message to the console in the format `[Context]: Message`.
+        /// </summary>
+        /// <param name="Context">[Context]: Message</param>
+        /// <param name="Message">[Context]: Message</param>
         public static void Write(string Context, string Message)
         {
-            System.Console.WriteLine($"[{Context}]: {Message.ToLower()}");
+            Console.WriteLine($"[{Context}]: {Message.ToLower()}");
         }
     }
 }

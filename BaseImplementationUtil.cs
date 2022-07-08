@@ -4,6 +4,12 @@ namespace izolabella.Util
 {
     public class BaseImplementationUtil
     {
+        /// <summary>
+        /// Gets all items that implement a particular class and have a parameterless constructor, initializes them, and returns them.
+        /// </summary>
+        /// <typeparam name="T">The base class.</typeparam>
+        /// <param name="From">The assembly to load classes from.</param>
+        /// <returns>A <see cref="List{T}"/> of initialized items.</returns>
         public static List<T> GetItems<T>(Assembly? From = null)
         {
             List<T> R = new();
