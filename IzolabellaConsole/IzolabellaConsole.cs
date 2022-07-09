@@ -27,9 +27,12 @@ namespace izolabella.Util.IzolabellaConsole
         /// <param name="MessageBefore"></param>
         /// <param name="Result"></param>
         /// <returns></returns>
-        public static bool GetNext(string Context, string MessageBefore, out string? Result)
+        public static bool GetNext(string? Context, string? MessageBefore, out string? Result)
         {
-            Write(Context, MessageBefore);
+            if(Context != null && MessageBefore != null)
+            {
+                Write(Context, MessageBefore);
+            }
             try
             {
                 Result = Console.ReadLine();
@@ -70,6 +73,17 @@ namespace izolabella.Util.IzolabellaConsole
             return true;
         }
 
+        private static List<ConsoleColor> AllowedConsoleColors { get; } = new()
+        {
+            ConsoleColor.White,
+            ConsoleColor.Yellow,
+            ConsoleColor.Red,
+            ConsoleColor.Magenta,
+            ConsoleColor.Cyan,
+        };
+
+        private static Dictionary<string, ConsoleColor> ContextColors { get; } = new();
+
         /// <summary>
         /// Writes a message to the console in the format `[Context]: Message`.
         /// </summary>
@@ -77,6 +91,18 @@ namespace izolabella.Util.IzolabellaConsole
         /// <param name="Message">[Context]: Message</param>
         public static void Write(string Context, string Message)
         {
+            KeyValuePair<string, ConsoleColor>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower() == Context.ToLower());
+            IEnumerable<ConsoleColor> NonPicked = AllowedConsoleColors.Where(A => !ContextColors.ContainsValue(A));
+            ConsoleColor Color = NonPicked.ElementAtOrDefault(new Random().Next(0, NonPicked.Count()));
+            if (ColorKV.HasValue && ColorKV.Value.Key != null)
+            {
+                Color = ColorKV.Value.Value;
+            }
+            else
+            {
+                ContextColors.TryAdd(Context, Color);
+            }
+            Console.ForegroundColor = Color;
             Console.WriteLine($"[{Context}]: {Message.ToLower()}");
         }
     }
