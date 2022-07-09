@@ -26,6 +26,8 @@ namespace izolabella.Util.Controllers
         /// </summary>
         public abstract string Alias { get; }
 
+        public virtual bool NeedsProfileToken { get; } = true;
+
         /// <summary>
         /// Whether the active state of this controller is enabled.
         /// </summary>
