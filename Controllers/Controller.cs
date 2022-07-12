@@ -15,9 +15,9 @@ namespace izolabella.Util.Controllers
         /// </summary>
         /// <param name="Message">The message to display.</param>
         /// <returns></returns>
-        private Task MessagePumpedAsync(string Message)
+        private Task MessagePumpedAsync(string Message, bool IsLower = true)
         {
-            IzolabellaConsole.IzolabellaConsole.Write(this.Alias, Message);
+            IzolabellaConsole.IzolabellaConsole.Write(this.Alias, Message, IsLower);
             return Task.CompletedTask;
         }
 
@@ -101,7 +101,7 @@ namespace izolabella.Util.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public delegate Task OnControllerMessageAsyncHandler(string Message);
+        public delegate Task OnControllerMessageAsyncHandler(string Message, bool IsLower = true);
 
         /// <summary>
         /// When a message is received, this event will fire.

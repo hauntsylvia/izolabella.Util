@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace izolabella.Util
 {
@@ -15,6 +16,13 @@ namespace izolabella.Util
         public static ulong CreateNewId()
         {
             return BitConverter.ToUInt64(Guid.NewGuid().ToByteArray(), 0);
+        }
+
+        public static string CreateSecureString()
+        {
+            byte[] Bite = new byte[32];
+            RandomNumberGenerator.Fill(Bite);
+            return Convert.ToHexString(Bite);
         }
     }
 }

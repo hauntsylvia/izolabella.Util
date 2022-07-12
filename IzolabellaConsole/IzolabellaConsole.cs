@@ -91,7 +91,7 @@ namespace izolabella.Util.IzolabellaConsole
         /// </summary>
         /// <param name="Context">[Context]: Message</param>
         /// <param name="Message">[Context]: Message</param>
-        public static void Write(string Context, string Message)
+        public static void Write(string Context, string Message, bool IsLower = true)
         {
             KeyValuePair<string, Color>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower() == Context.ToLower());
             Color Color = AllowedConsoleColors.ElementAtOrDefault(new Random().Next(0, AllowedConsoleColors.Count));
@@ -103,7 +103,7 @@ namespace izolabella.Util.IzolabellaConsole
             {
                 ContextColors.TryAdd(Context, Color);
             }
-            Console.WriteLine($"[{Context}]: {Message.ToLower()}", Color);
+            Console.WriteLine($"[{Context}]: {(IsLower ? Message.ToLower() : Message)}", Color);
         }
     }
 }
