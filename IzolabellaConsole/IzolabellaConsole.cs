@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Console = Colorful.Console;
 
 namespace izolabella.Util.IzolabellaConsole
 {
@@ -73,16 +76,15 @@ namespace izolabella.Util.IzolabellaConsole
             return true;
         }
 
-        private static List<ConsoleColor> AllowedConsoleColors { get; } = new()
+        private static List<Color> AllowedConsoleColors { get; } = new()
         {
-            ConsoleColor.White,
-            ConsoleColor.Yellow,
-            ConsoleColor.Red,
-            ConsoleColor.Magenta,
-            ConsoleColor.Cyan,
+            Color.FromArgb(213, 126, 126),
+            Color.FromArgb(172, 125, 136),
+            Color.FromArgb(133, 88, 111),
+            Color.FromArgb(137, 138, 166),
         };
 
-        private static Dictionary<string, ConsoleColor> ContextColors { get; } = new();
+        private static Dictionary<string, Color> ContextColors { get; } = new();
 
         /// <summary>
         /// Writes a message to the console in the format `[Context]: Message`.
@@ -91,9 +93,8 @@ namespace izolabella.Util.IzolabellaConsole
         /// <param name="Message">[Context]: Message</param>
         public static void Write(string Context, string Message)
         {
-            KeyValuePair<string, ConsoleColor>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower() == Context.ToLower());
-            IEnumerable<ConsoleColor> NonPicked = AllowedConsoleColors.Where(A => !ContextColors.ContainsValue(A));
-            ConsoleColor Color = NonPicked.ElementAtOrDefault(new Random().Next(0, NonPicked.Count()));
+            KeyValuePair<string, Color>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower() == Context.ToLower());
+            Color Color = AllowedConsoleColors.ElementAtOrDefault(new Random().Next(0, AllowedConsoleColors.Count));
             if (ColorKV.HasValue && ColorKV.Value.Key != null)
             {
                 Color = ColorKV.Value.Value;
@@ -102,8 +103,7 @@ namespace izolabella.Util.IzolabellaConsole
             {
                 ContextColors.TryAdd(Context, Color);
             }
-            Console.ForegroundColor = Color;
-            Console.WriteLine($"[{Context}]: {Message.ToLower()}");
+            Console.WriteLine($"[{Context}]: {Message.ToLower()}", Color);
         }
     }
 }
