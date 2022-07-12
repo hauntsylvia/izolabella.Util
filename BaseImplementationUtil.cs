@@ -30,10 +30,10 @@ namespace izolabella.Util
         /// <typeparam name="T">The base class.</typeparam>
         /// <param name="From">The assemblies to load classes from.</param>
         /// <returns>A <see cref="List{T}"/> of initialized items.</returns>
-        public static List<T> GetItems<T>(Assembly[] Assemblies)
+        public static List<T> GetItems<T>(Assembly?[] Assemblies)
         {
             List<T> R = new();
-            foreach(Assembly From in Assemblies)
+            foreach(Assembly? From in Assemblies)
             {
                 R.AddRange(GetItems<T>(From));
             }
