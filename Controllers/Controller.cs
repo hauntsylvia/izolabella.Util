@@ -43,21 +43,21 @@ namespace izolabella.Util.Controllers
         /// </summary>
         /// <param name="Profile">The profile used to start this controller.</param>
         /// <returns></returns>
-        public async Task StartAsync(ControllerProfile Profile)
+        public Task StartAsync(ControllerProfile Profile)
         {
             this.LastProfile = Profile;
             this.Enabled = true;
-            await this.StartProtectedAsync(Profile);
+            return this.StartProtectedAsync(Profile);
         }
 
         /// <summary>
         /// Stops the controller.
         /// </summary>
         /// <returns></returns>
-        public async Task StopAsync()
+        public Task StopAsync()
         {
             this.Enabled = false;
-            await this.StopProtectedAsync();
+            return this.StopProtectedAsync();
         }
 
         /// <summary>
