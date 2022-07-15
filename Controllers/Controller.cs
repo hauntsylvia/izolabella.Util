@@ -1,4 +1,5 @@
-﻿using izolabella.Storage.Objects.DataStores;
+﻿using System.Reflection;
+using izolabella.Storage.Objects.DataStores;
 using izolabella.Util.Controllers.Profiles;
 
 namespace izolabella.Util.Controllers
@@ -107,5 +108,14 @@ namespace izolabella.Util.Controllers
         /// When a message is received, this event will fire.
         /// </summary>
         public event OnControllerMessageAsyncHandler? OnMessageAsync;
+
+        private static List<Controller> CachedInstances { get; } = new();
+
+        public static IEnumerable<Controller> GetControllers(Assembly?[]? BelongingTo = null)
+        {
+            List<Controller> NewInstances = BaseImplementationUtil.GetItems<Controller>(BelongingTo ?? AppDomain.CurrentDomain.GetAssemblies());
+            CachedInstances.AddRange(NewInstances.Where(NewInstance => !CachedInstances.Any(CachedInstance => CachedInstance.Alias == NewInstance.Alias)));
+            return CachedInstances;
+        }
     }
 }
