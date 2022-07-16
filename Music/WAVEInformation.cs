@@ -49,22 +49,22 @@ namespace izolabella.Util.Music
             }
         }
 
-        [JsonProperty]
-        public short ChannelCount { get; }
+        [JsonProperty("ChannelCount")]
+        public short ChannelCount { get; set; }
 
-        [JsonProperty]
-        public int SampleRate { get; }
+        [JsonProperty("SampleRate")]
+        public int SampleRate { get; set; }
 
-        [JsonProperty]
-        public int LengthInBytes { get; }
+        [JsonProperty("LengthInBytes")]
+        public int LengthInBytes { get; set; }
 
-        [JsonProperty]
-        public long BytesPerSecond { get; }
+        [JsonProperty("BytesPerSecond")]
+        public long BytesPerSecond { get; set; }
 
-        [JsonProperty]
-        public short BitsPerSample { get; }
+        [JsonProperty("BitsPerSample")]
+        public short BitsPerSample { get; set; }
 
-        [JsonProperty]
-        public TimeSpan FileDuration { get; }
+        [JsonProperty("FileDuration")]
+        public TimeSpan FileDuration { get; set; }
     }
 }
