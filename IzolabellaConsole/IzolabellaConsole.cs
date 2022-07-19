@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,7 +94,7 @@ namespace izolabella.Util.IzolabellaConsole
         /// <param name="Message">[Context]: Message</param>
         public static void Write(string Context, string Message, bool IsLower = true)
         {
-            KeyValuePair<string, Color>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower() == Context.ToLower());
+            KeyValuePair<string, Color>? ColorKV = ContextColors.FirstOrDefault(C => C.Key.ToLower(CultureInfo.InvariantCulture) == Context.ToLower(CultureInfo.InvariantCulture));
             Color Color = AllowedConsoleColors.ElementAtOrDefault(new Random().Next(0, AllowedConsoleColors.Count));
             if (ColorKV.HasValue && ColorKV.Value.Key != null)
             {
@@ -103,7 +104,7 @@ namespace izolabella.Util.IzolabellaConsole
             {
                 ContextColors.TryAdd(Context, Color);
             }
-            Console.WriteLine($"[{Context}]: {(IsLower ? Message.ToLower() : Message)}", Color);
+            Console.WriteLine($"[{Context}]: {(IsLower ? Message.ToLower(CultureInfo.InvariantCulture) : Message)}", Color);
         }
     }
 }

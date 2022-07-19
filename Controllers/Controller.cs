@@ -18,14 +18,14 @@ namespace izolabella.Util.Controllers
         /// <returns></returns>
         private Task MessagePumpedAsync(string Message, bool IsLower = true)
         {
-            IzolabellaConsole.IzolabellaConsole.Write(this.Alias, Message, IsLower);
+            IzolabellaConsole.IzolabellaConsole.Write(this.Name, Message, IsLower);
             return Task.CompletedTask;
         }
 
         /// <summary>
         /// The alias of this controller.
         /// </summary>
-        public abstract string Alias { get; }
+        public abstract string Name { get; }
 
         public virtual bool NeedsProfileToken { get; } = true;
 
@@ -114,7 +114,7 @@ namespace izolabella.Util.Controllers
         public static IEnumerable<Controller> GetControllers(Assembly?[]? BelongingTo = null)
         {
             List<Controller> NewInstances = BaseImplementationUtil.GetItems<Controller>(BelongingTo ?? AppDomain.CurrentDomain.GetAssemblies());
-            CachedInstances.AddRange(NewInstances.Where(NewInstance => !CachedInstances.Any(CachedInstance => CachedInstance.Alias == NewInstance.Alias)));
+            CachedInstances.AddRange(NewInstances.Where(NewInstance => !CachedInstances.Any(CachedInstance => CachedInstance.Name == NewInstance.Name)));
             return CachedInstances;
         }
     }

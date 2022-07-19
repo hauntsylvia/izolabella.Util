@@ -9,6 +9,8 @@
 	<Company>izolabella</Company>
 	<Description>A general-use utilization package.</Description>
 	<RepositoryUrl>https://github.com/izolabella/izolabella.Util</RepositoryUrl>
+	<EnableNETAnalyzers>True</EnableNETAnalyzers>
+	<AnalysisLevel>latest-recommended</AnalysisLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

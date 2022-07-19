@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace izolabella.Util.Music
                 Reader.BaseStream.Read(FullData, 0, FullData.Length);
                 string RIFF = Encoding.UTF8.GetString(FullData[..4]);
                 string WAVE = Encoding.UTF8.GetString(FullData.Skip(8).Take(4).ToArray());
-                if (RIFF.ToUpper() != "RIFF" || WAVE.ToUpper() != "WAVE")
+                if (RIFF.ToUpper(CultureInfo.InvariantCulture) != "RIFF" || WAVE.ToUpper(CultureInfo.InvariantCulture) != "WAVE")
                 {
                     throw new ArgumentException("The provided file is not in .wav format.", paramName: nameof(FileLocation));
                 }

@@ -2,7 +2,7 @@
 
 namespace izolabella.Util
 {
-    public class BaseImplementationUtil
+    public static class BaseImplementationUtil
     {
         /// <summary>
         /// Gets all items that implement a particular class and have a parameterless constructor, initializes them, and returns them.
