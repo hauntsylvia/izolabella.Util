@@ -24,10 +24,8 @@
   <ItemGroup>
     <PackageReference Include="Colorful.Console" Version="1.2.15" />
     <PackageReference Include="izolabella.Storage" Version="0.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Input\" />
+    <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.419" />
+    <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.419" />
   </ItemGroup>
 
 </Project>
