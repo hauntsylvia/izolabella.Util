@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace izolabella.Util.Converters;
-public abstract class Converter
+public abstract class IzolabellaConverter
 {
     public abstract object? FromString(string? Data);
 }
