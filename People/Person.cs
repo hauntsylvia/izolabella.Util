@@ -6,25 +6,26 @@ using izolabella.Storage.Objects.Structures;
 using izolabella.Util.People.Inner;
 using Newtonsoft.Json;
 
-namespace izolabella.Util.People;
-
-public class Person : IDataStoreEntity
+namespace izolabella.Util.People
 {
-    [JsonConstructor]
-    public Person(string DisplayName, PronounSet[] Pronouns, ulong? Id = null)
+    public class Person : IDataStoreEntity
     {
-        this.displayName = DisplayName;
-        this.Pronouns = Pronouns;
-        this.Id = Id ?? IdGenerator.CreateNewId();
+        [JsonConstructor]
+        public Person(string DisplayName, PronounSet[] Pronouns, ulong? Id = null)
+        {
+            this.displayName = DisplayName;
+            this.Pronouns = Pronouns;
+            this.Id = Id ?? IdGenerator.CreateNewId();
+        }
+
+        private string displayName;
+        [JsonProperty(nameof(DisplayName))]
+        public string DisplayName { get => this.displayName; set => this.displayName = value.Length >= 32 ? value[..32] : value; }
+
+        [JsonProperty(nameof(Pronouns))]
+        public PronounSet[] Pronouns { get; set; }
+
+        [JsonProperty(nameof(Id))]
+        public ulong Id { get; }
     }
-
-    private string displayName;
-    [JsonProperty("DisplayName")]
-    public string DisplayName { get => this.displayName; set => this.displayName = value.Length >= 32 ? value[..32] : value; }
-
-    [JsonProperty("Pronouns")]
-    public PronounSet[] Pronouns { get; set; }
-
-    [JsonProperty("Id")]
-    public ulong Id { get; }
 }
