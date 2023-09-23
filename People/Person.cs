@@ -8,24 +8,17 @@ using Newtonsoft.Json;
 
 namespace izolabella.Util.People
 {
-    public class Person : IDataStoreEntity
+    [method: JsonConstructor]
+    public class Person(string DisplayName, PronounSet[] Pronouns, ulong? Id = null) : IDataStoreEntity
     {
-        [JsonConstructor]
-        public Person(string DisplayName, PronounSet[] Pronouns, ulong? Id = null)
-        {
-            this.displayName = DisplayName;
-            this.Pronouns = Pronouns;
-            this.Id = Id ?? IdGenerator.CreateNewId();
-        }
-
-        private string displayName;
+        private string displayName = DisplayName;
         [JsonProperty(nameof(DisplayName))]
         public string DisplayName { get => this.displayName; set => this.displayName = value.Length >= 32 ? value[..32] : value; }
 
         [JsonProperty(nameof(Pronouns))]
-        public PronounSet[] Pronouns { get; set; }
+        public PronounSet[] Pronouns { get; set; } = Pronouns;
 
         [JsonProperty(nameof(Id))]
-        public ulong Id { get; }
+        public ulong Id { get; } = Id ?? IdGenerator.CreateNewId();
     }
 }
